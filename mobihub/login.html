@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <script src="https://kit.fontawesome.com/43df530aea.js" crossorigin="anonymous"></script>
+</head>
+
+<style>
+
+    body{
+        background-image: url(./back.jpg);
+        background-size: cover;
+        
+    }
+    .form{
+    width: 400px;
+    height: 400px;
+    background-image: url(./back.jpg);
+    /* background-color: rgb(43, 43, 43); */
+    /* background-color: transparent; */
+    box-shadow: 5px 5px 5px 5px rgb(247, 131, 131);
+    margin-top: 100px;
+    padding: 20px;
+}
+
+.form:hover{
+    border: solid 4px rgb(243, 90, 79);
+    box-shadow: none;
+}
+
+#email{
+    width: 360px;
+    background-color: white;
+    height: 25px;
+    border:none;
+    border-radius: 5px;
+}
+
+#pswd{
+    width: 360px;
+    background-color: white;
+    height: 25px;
+    border:none;
+    border-radius: 5px;
+}
+
+#button{
+    width: 360px;
+    background-color: rgb(0, 68, 255);
+    height: 25px;
+   color: white;
+    border-radius: 5px;
+    border: solid 1px rgb(255, 255, 255);
+}
+
+#button:hover{
+    
+    background-color: rgb(51, 255, 0);
+    color: rgb(2, 19, 255);
+   
+   
+    }
+    
+    </style>
+
+<body>
+    
+    <center>
+        <form onsubmit="login()" class="form">
+
+            <h1 style="color: chartreuse;">Mobi
+                <span style="color: rgb(252, 49, 49);">H</span>ub</h1>
+        
+        
+            <h2 id="head" style="color: white;">Login</h2> <br><br>
+        
+        
+        <input type="email"  id="email" placeholder="email"><br><br>
+        <input type="password" placeholder="password" id="pswd"><br><br>
+        
+        <button type="submit" id="button">Login</button>
+        <p style="color: white;">New user? <a href="sign.html" style="color: yellow;">SignIn</a></p>
+        <i class="fa-brands fa-facebook fa-xl" style="color: #ffffff;"> <p>   </p> </i> <i class="fa-brands fa-instagram fa-xl" style="color: #ffffff;" href="https://www.bing.com/search?pglt=41&q=instagram&cvid=b409a806409246cfbb66bc5c55b49818&aqs=edge.1.69i59j46j69i57j0l6.6217j0j1&FORM=ANNTA1&PC=U531"></i>
+        </form>
+
+        
+        </center>
+
+
+
+        <script type="module">
+    
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+            import { getAuth,signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+            
+          
+            
+            const firebaseConfig = {
+              apiKey: "AIzaSyDENsNvO-VuiFXDkiVWK-YEXyB_YNYJiGo",
+              authDomain: "mobihub-4f5b7.firebaseapp.com",
+              projectId: "mobihub-4f5b7",
+              storageBucket: "mobihub-4f5b7.appspot.com",
+              messagingSenderId: "808069908252",
+              appId: "1:808069908252:web:15c886ba66c74e73061cd9",
+              measurementId: "G-Y1BFLMVNJG"
+            };
+          
+            
+            const app = initializeApp(firebaseConfig);
+        
+            const auth=getAuth()
+        
+            
+        
+        
+            
+            var email=document.getElementById("email")
+            var pswd=document.getElementById("pswd")
+            
+        
+        
+            window.login=function(){
+                event.preventDefault()
+            if(email.value== "" || pswd.value== ""){
+                alert("All Fields Are mandatory...!")
+            }
+            else if(pswd.value != pswd.value){
+                alert("Password Does not match")
+            }
+        
+            let obj={
+                email:email.value,
+                password:pswd.value
+            }
+        
+            signInWithEmailAndPassword(auth,obj.email,obj.password)
+            .then(()=>{
+                alert("Logged In")
+                window.location.href="index.html"
+            })
+            .catch((err)=>{
+                alert("Login Failed"+ err)
+            })
+            }
+           
+          </script>
+
+</body>
+</html>
